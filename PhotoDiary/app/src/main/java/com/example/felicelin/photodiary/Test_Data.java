@@ -9,6 +9,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
+
 // 資料功能類別
 public class Test_Data {
 
@@ -26,6 +28,7 @@ public class Test_Data {
     public static final String CONTENT_COLUMN_3 = "content_3";
     public static final String PHOTO_COLUMN_3 = "photo_3";
     public static final String PLACE_COLUMN = "place";
+    public static final String LAYOUT_COLUMN = "layout";
 
     // 使用上面宣告的變數建立表格的SQL指令
     public static final String CREATE_TABLE_TRIP =
@@ -38,7 +41,8 @@ public class Test_Data {
                     PHOTO_COLUMN_2 + " TEXT, " +
                     CONTENT_COLUMN_3 + " TEXT, " +
                     PHOTO_COLUMN_3 + " TEXT, " +
-                    PLACE_COLUMN + " TEXT NOT NULL" +
+                    PLACE_COLUMN + " TEXT NOT NULL, " +
+                    LAYOUT_COLUMN + " INTEGER NOT NULL" +
                     ")";
 
     // 資料庫物件
@@ -68,6 +72,7 @@ public class Test_Data {
         cv.put(CONTENT_COLUMN_3, item.getContent_3());
         cv.put(PHOTO_COLUMN_3, item.getPhoto_3());
         cv.put(PLACE_COLUMN, item.getPlace());
+        cv.put(LAYOUT_COLUMN, item.getLayout());
         // 新增一筆資料並取得編號
         // 第一個參數是表格名稱
         // 第二個參數是沒有指定欄位值的預設值
@@ -92,6 +97,7 @@ public class Test_Data {
         cv.put(CONTENT_COLUMN_3, item.getContent_3());
         cv.put(PHOTO_COLUMN_3, item.getPhoto_3());
         cv.put(PLACE_COLUMN, item.getPlace());
+        cv.put(LAYOUT_COLUMN, item.getLayout());
         // 設定修改資料的條件為編號
         // 格式為「欄位名稱＝資料」
         String where = KEY_ID + "=" + item.getId();
@@ -149,6 +155,7 @@ public class Test_Data {
         result.setContent_3(cursor.getString(6));
         result.setPhoto_3(cursor.getString(7));
         result.setPlace(cursor.getString(8));
+        result.setLayout(cursor.getInt(9));
         return result;
     }
 
@@ -164,7 +171,9 @@ public class Test_Data {
 
     // 建立範例資料
     public void sample() {
-        Item item = new Item(0,"abc", "def", "ghi", "1", "2", "3", "4", "where?");
+        Item item = new Item(0,"abc", "def", "ghi", "1", "2", "3", "4", "where?", 3);
+        Item item1 = new Item(0,"hello", "from", "here", "where?", 1);
         insert_trip(item);
+        insert_trip(item1);
     }
 }

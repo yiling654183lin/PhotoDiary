@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PhotoDiary</string>
+    <string name="check">確定</string>
 </resources>

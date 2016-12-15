@@ -1,37 +1,73 @@
 package com.example.felicelin.photodiary;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+
+import java.util.Calendar;
 import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    TextView t01;
+    private CalendarView cv;
+    private TextView tv;
+    private Button bt;
+    int Myear,Mmonth,Mday;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        t01=(TextView) this.findViewById(R.id.t01);
-        // 建立資料庫物件
-        Test_Data test=new Test_Data(MainActivity.this);
-        // 如果資料庫是空的，就建立一些範例資料
-        // 這是為了方便測試用的，完成應用程式以後可以拿掉
-        if (test.getCount_trip() == 0) {
-            test.sample();
-        }
-        t01.setText("Test測試:\n");
-        //取得資料數
-        t01.append("目前資料庫裡有"+String.valueOf(test.getCount_trip()).toString()+"筆資料\n");
-        // 取得所有記事資料
-        List<Item> items=test.getAll_trip();
-        for(Item i:items){
-            t01.append("\n第"+String.valueOf(i.getId()).toString()+"筆聊天紀錄\n");
-            t01.append("該玩家number為="+i.getDate()+"\n");
-            t01.append("name為="+i.getContent_1()+"\n");
-            t01.append("content為="+i.getPhoto_1()+"\n");
-            t01.append("文字color為="+i.getPlace()+"\n");
-        }
-        test.close();
+
+        getViews();
+
+        //抓今天的日期
+        Calendar c=Calendar.getInstance();//建立抓日期物件c
+        Myear=c.get(Calendar.YEAR);//年
+        Mmonth=c.get(Calendar.MONTH);//月
+        Mday=c.get(Calendar.DAY_OF_MONTH);//日
+
+        tv.setText(new StringBuilder().append(Myear).append("-").append(Mmonth+1).append("-").append(Mday));
+
+        cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener()
+               {
+                   @Override
+                   public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth)
+                   {
+                       // TODO Auto-generated method stub
+                       Myear = year;
+                       Mmonth = month;
+                       Mday = dayOfMonth;
+
+                       tv.setText(new StringBuilder().append(Myear).append("-").
+                               append(Mmonth+1).append("-").append(Mday));
+
+                       //StringBuilder可以將字串連續的加入
+
+                   }
+               }
+        );
+        bt.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+            // TODO Auto-generated method stub
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, ViewEventList.class);
+                intent.putExtra("date",tv.getText().toString());
+                startActivity(intent);
+                MainActivity.this.finish();
+            }
+        });
+
+    }
+
+    private void getViews()
+    {
+        tv=(TextView)findViewById(R.id.textView2);
+        cv=(CalendarView)findViewById(R.id.calendarView2);
+        bt=(Button)findViewById(R.id.Show);
     }
 }

@@ -11,8 +11,32 @@
     tools:context="com.example.felicelin.photodiary.MainActivity">
 
     <TextView
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/t01" />
+        android:id="@+id/textView2"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_alignLeft="@+id/calendarView2"
+        android:layout_alignStart="@+id/calendarView2"
+        android:layout_below="@+id/calendarView2" />
+
+    <Button
+        android:text="@string/check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="26dp"
+        android:id="@+id/Show"
+        android:onClick="OnClick_1"
+        android:layout_below="@+id/calendarView2"
+        android:layout_alignRight="@+id/calendarView2"
+        android:layout_alignEnd="@+id/calendarView2"
+        android:layout_marginRight="26dp" />
+
+    <CalendarView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/calendarView2"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -19,10 +19,30 @@ public class Item implements Serializable {    //介面為物件序列化,可將
     private String content_3;
     private String photo_3;
     private String place;
+    private int layout;
     public Item(){
-        content_1 = "";
+        this.content_1 = "";
+        this.layout=1;
     }
-    public Item(int id, String date, String content_1, String photo_1, String content_2, String photo_2, String content_3, String photo_3, String place){
+    public Item(int id, String date, String content_1, String photo_1, String place, int layout){
+        this.id=id;
+        this.date=date;
+        this.content_1=content_1;
+        this.photo_1=photo_1;
+        this.place=place;
+        this.layout=layout;
+    }
+    public Item(int id, String date, String content_1, String photo_1, String content_2, String photo_2, String place, int layout){
+        this.id=id;
+        this.date=date;
+        this.content_1=content_1;
+        this.photo_1=photo_1;
+        this.content_2=content_2;
+        this.photo_2=photo_2;
+        this.place=place;
+        this.layout=layout;
+    }
+    public Item(int id, String date, String content_1, String photo_1, String content_2, String photo_2, String content_3, String photo_3, String place, int layout){
         this.id=id;
         this.date=date;
         this.content_1=content_1;
@@ -32,6 +52,7 @@ public class Item implements Serializable {    //介面為物件序列化,可將
         this.content_3=content_3;
         this.photo_3=photo_3;
         this.place=place;
+        this.layout=layout;
     }
     public void setId(long id){
         this.id=id;
@@ -64,7 +85,7 @@ public class Item implements Serializable {    //介面為物件序列化,可將
         return this.content_2;
     }
     public void setPhoto_2(String photo_2){
-        this.photo_1=photo_1;
+        this.photo_2=photo_2;
     }
     public String getPhoto_2(){
         return this.photo_2;
@@ -87,5 +108,12 @@ public class Item implements Serializable {    //介面為物件序列化,可將
     public String getPlace(){
         return this.place;
     }
+    public void setLayout(int layout){
+        this.layout=layout;
+    }
+    public int getLayout(){
+        return this.layout;
+    }
+
 
 }
