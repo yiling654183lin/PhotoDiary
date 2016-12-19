@@ -25,7 +25,7 @@ public class ChooseLayout extends AppCompatActivity {
         Intent intent = this.getIntent();
         //取得傳遞過來的資料
         date = intent.getStringExtra("date");
-        Toast.makeText( this , date , Toast.LENGTH_SHORT).show();
+        //Toast.makeText( this , date , Toast.LENGTH_SHORT).show();
 
         //getViews
         layout1 = (ImageButton)findViewById(R.id.Layout_1);

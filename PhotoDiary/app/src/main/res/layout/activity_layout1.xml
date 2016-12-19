@@ -14,9 +14,6 @@
     <!--實現多行 -->
         android:maxLines="15"            <!--最多不超過15行 --><![CDATA[
         android:textColor="#FF0000"/>
-
-
-
     ]]>
 
     <ScrollView
@@ -37,11 +34,36 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:ems="10"
+                    android:id="@+id/l1_date"
+                    android:layout_weight="1" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/l1_place"
+                    android:layout_weight="1"
+                    android:hint="Place" />
+
+            </LinearLayout>
+
             <EditText
                 android:id="@+id/l1_content1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="4.07"
                 android:singleLine="false"
                 android:hint="input"
                 android:inputType="textMultiLine"
@@ -52,5 +74,14 @@
                 android:layout_centerHorizontal="true" />
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:text="Save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/l1_save"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

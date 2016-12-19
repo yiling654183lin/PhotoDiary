@@ -32,6 +32,7 @@ public class Layout2 extends AppCompatActivity {
     private ImageButton photo1, photo2;
     private TextView content1, content2;
     private final static int PHOTO = 99;
+    private final static int PICK_FROM_GALLERY =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,19 +52,33 @@ public class Layout2 extends AppCompatActivity {
         photo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(intent, PHOTO);
+
+                /*
+                Intent i = new Intent(Intent.ACTION_PICK, null);
+                i.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                startActivityForResult(i, PHOTO);
+                */
             }
         });
         photo2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, PHOTO);
+                startActivityForResult(intent, PICK_FROM_GALLERY);
+
+                /*
+                Intent i = new Intent(Intent.ACTION_PICK, null);
+                i.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                startActivityForResult(i, PICK_FROM_GALLERY);
+                */
             }
         });
     }
@@ -76,25 +91,37 @@ public class Layout2 extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         // 有選擇檔案
-        if ( resultCode == RESULT_OK )
-        {
-            // 取得檔案的 Uri
-            Uri uri = data.getData();
-            if( uri != null )
-            {
-                // 利用 Uri 顯示 ImageView 圖片
-                photo1.setImageURI( uri );
+        if (requestCode == PHOTO) {
+            if (resultCode == RESULT_OK) {
+                // 取得檔案的 Uri
+                Uri uri = data.getData();
+                if (uri != null) {
+                    // 利用 Uri 顯示 ImageView 圖片
+                    photo1.setImageURI(uri);
 
-                setTitle( uri.toString() );
-            }
-            else
-            {
-                setTitle("無效的檔案路徑 !!");
+                    setTitle(uri.toString());
+                } else {
+                    setTitle("無效的檔案路徑 !!");
+                }
+            } else {
+                setTitle("取消選擇檔案 !!");
             }
         }
-        else
-        {
-            setTitle("取消選擇檔案 !!");
+        else if (requestCode == PICK_FROM_GALLERY) {
+            if (resultCode == RESULT_OK) {
+                // 取得檔案的 Uri
+                Uri uri = data.getData();
+                if (uri != null) {
+                    // 利用 Uri 顯示 ImageView 圖片
+                    photo2.setImageURI(uri);
+
+                    setTitle(uri.toString());
+                } else {
+                    setTitle("無效的檔案路徑 !!");
+                }
+            } else {
+                setTitle("取消選擇檔案 !!");
+            }
         }
     }
 

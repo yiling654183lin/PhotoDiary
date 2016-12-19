@@ -31,7 +31,7 @@ public class ViewEventList extends AppCompatActivity {
         Intent intent = this.getIntent();
         //取得傳遞過來的資料
         date = intent.getStringExtra("date");
-        Toast.makeText( this , date , Toast.LENGTH_SHORT).show();
+        //Toast.makeText( this , date , Toast.LENGTH_SHORT).show();
 
         //getViews
         t01=(TextView) this.findViewById(R.id.t01);
@@ -42,11 +42,11 @@ public class ViewEventList extends AppCompatActivity {
         // 如果資料庫是空的，就建立一些範例資料
         // 這是為了方便測試用的，完成應用程式以後可以拿掉
         if (test.getCount_trip() == 0) {
-            test.sample();
+            t01.setText("Test測試:\n");
+            //取得資料數
+            t01.append("目前資料庫裡有"+String.valueOf(test.getCount_trip()).toString()+"筆資料\n");
         }
-        t01.setText("Test測試:\n");
-        //取得資料數
-        t01.append("目前資料庫裡有"+String.valueOf(test.getCount_trip()).toString()+"筆資料\n");
+
         // 取得所有記事資料
         List<Item> items=test.getAll_trip();
 
@@ -58,15 +58,18 @@ public class ViewEventList extends AppCompatActivity {
             t01.append("content為="+i.getPhoto_1()+"\n");
             t01.append("文字color為="+i.getPlace()+"\n");
             */
-            btnGreen = new ImageButton(this);
-            btnGreen = new ImageButton(this);
-            btnGreen.setImageResource(R.drawable.event_button);
-            btnGreen.setOnClickListener(ClickListener);
-            btnGreen.setBackgroundColor(Color.TRANSPARENT);
-            btnGreen.setTag(Integer.toString(i.getLayout()));
-            btnGreen.setId(Integer.parseInt(String.valueOf(i.getId())));
+            if(date.toString().equals(i.getDate())) {
+                btnGreen = new ImageButton(this);
+                btnGreen = new ImageButton(this);
+                btnGreen.setImageResource(R.drawable.event_button);
+                btnGreen.setOnClickListener(ClickListener);
+                btnGreen.setBackgroundColor(Color.TRANSPARENT);
+                btnGreen.setTag(Integer.toString(i.getLayout()));
+                btnGreen.setId((int) i.getId());
+                //Toast.makeText(this, "ID "+String.valueOf(i.getId()).toString(), Toast.LENGTH_SHORT).show();
+                evenetList.addView(btnGreen);
+            }
 
-            evenetList.addView(btnGreen);
         }
         test.close();
 
@@ -117,6 +120,8 @@ public class ViewEventList extends AppCompatActivity {
 
             }
             intent.putExtra("date",date);
+            Toast.makeText(ViewEventList.this, Integer.toString(v.getId()), Toast.LENGTH_SHORT).show();
+            intent.putExtra("ID", Integer.toString(v.getId()));
             startActivity(intent);
             ViewEventList.this.finish();
         }

@@ -17,7 +17,7 @@ public class ViewLayout2 extends AppCompatActivity {
         Intent intent = this.getIntent();
         //取得傳遞過來的資料
         date = intent.getStringExtra("date");
-        Toast.makeText( this , date , Toast.LENGTH_SHORT).show();
+        Toast.makeText( this , date  + " Layout 2", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -15,7 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewEventList" />
+        <activity android:name=".ViewEventList"/>
         <activity android:name=".ChooseLayout" />
         <activity android:name=".Layout1" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".Layout2" android:windowSoftInputMode="adjustResize"/>

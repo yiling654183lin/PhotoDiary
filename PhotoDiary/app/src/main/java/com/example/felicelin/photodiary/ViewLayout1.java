@@ -1,15 +1,35 @@
 package com.example.felicelin.photodiary;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.io.File;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class ViewLayout1 extends AppCompatActivity {
 
-    private String date;
+    private String date, ID;
+    private TextView date_layout, place, content1;
+    private ImageView photo1;
+    private Test_Data test;
+    private static final int READ_REQUEST_CODE = 42;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +37,42 @@ public class ViewLayout1 extends AppCompatActivity {
         Intent intent = this.getIntent();
         //取得傳遞過來的資料
         date = intent.getStringExtra("date");
-        Toast.makeText( this , date , Toast.LENGTH_SHORT).show();
+        ID = intent.getStringExtra("ID");
+        //Toast.makeText( this , date + " Layout 1", Toast.LENGTH_SHORT).show();
+        getViews();
+        Item result = test.get_trip(Long.parseLong(ID));
+        Toast.makeText(this, "Photo1 " + result.getPhoto_1(), Toast.LENGTH_SHORT).show();
+
+        photo1.setImageURI(Uri.parse(result.getPhoto_1()));
+        date_layout.setText(result.getDate());
+        place.setText(result.getPlace());
+        content1.setText(result.getPhoto_1());
+    }
+
+    public static Bitmap GetURLBitmap(URL url)
+    {
+        try
+        {
+            URLConnection conn = url.openConnection();
+            conn.connect();
+            InputStream isCover = conn.getInputStream();
+            Bitmap bmpCover = BitmapFactory.decodeStream(isCover);
+            isCover.close();
+            return bmpCover;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    private void getViews()
+    {
+        date_layout = (TextView) this.findViewById(R.id.vl1_date);
+        place = (TextView) this.findViewById(R.id.vl1_place);
+        content1 = (TextView) this.findViewById(R.id.vl1_content1);
+        photo1 = (ImageView) this.findViewById(R.id.vl1_photo1);
+        test=new Test_Data(ViewLayout1.this);
     }
 
     @Override
