@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_view_layout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,5 +10,89 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.felicelin.photodiary.ViewLayout3">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical|center_horizontal"
+        android:weightSum="1"
+        android:layout_alignParentTop="true">
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_weight="0.15">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/layout_blank"
+                android:id="@+id/vl3_photo1"
+                android:layout_weight="0.51"
+                android:background="@android:color/transparent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/layout_blank"
+                android:id="@+id/vl3_photo2"
+                android:layout_weight="0.51"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_weight="0.19">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/layout_blank"
+                android:id="@+id/vl3_photo3"
+                android:layout_weight="0.51"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="176dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:ems="10"
+                    android:id="@+id/vl3_date"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/vl3_place"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/vl3_content1"
+                    android:layout_height="wrap_content"
+                    android:singleLine="false"
+                    android:scrollbars="vertical"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="179dp"
+                    android:layout_alignTop="@+id/imageButton2"
+                    android:layout_alignLeft="@+id/imageButton"
+                    android:layout_alignStart="@+id/imageButton" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

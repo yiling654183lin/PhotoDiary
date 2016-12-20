@@ -29,7 +29,6 @@ public class ViewLayout1 extends AppCompatActivity {
     private TextView date_layout, place, content1;
     private ImageView photo1;
     private Test_Data test;
-    private static final int READ_REQUEST_CODE = 42;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,29 +40,11 @@ public class ViewLayout1 extends AppCompatActivity {
         //Toast.makeText( this , date + " Layout 1", Toast.LENGTH_SHORT).show();
         getViews();
         Item result = test.get_trip(Long.parseLong(ID));
-        Toast.makeText(this, "Photo1 " + result.getPhoto_1(), Toast.LENGTH_SHORT).show();
 
         photo1.setImageURI(Uri.parse(result.getPhoto_1()));
         date_layout.setText(result.getDate());
         place.setText(result.getPlace());
-        content1.setText(result.getPhoto_1());
-    }
-
-    public static Bitmap GetURLBitmap(URL url)
-    {
-        try
-        {
-            URLConnection conn = url.openConnection();
-            conn.connect();
-            InputStream isCover = conn.getInputStream();
-            Bitmap bmpCover = BitmapFactory.decodeStream(isCover);
-            isCover.close();
-            return bmpCover;
-        }
-        catch (Exception e)
-        {
-            return null;
-        }
+        content1.setText(result.getContent_1());
     }
 
     private void getViews()

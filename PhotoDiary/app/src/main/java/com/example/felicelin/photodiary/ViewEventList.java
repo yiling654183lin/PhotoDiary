@@ -1,8 +1,11 @@
 package com.example.felicelin.photodiary;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,11 +26,11 @@ public class ViewEventList extends AppCompatActivity {
     private LinearLayout evenetList;
     private String date;
     private ImageButton btnGreen;
+    private static final int REQUEST_EXTERNAL_STORAGE = 200;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_event_list);
-
         Intent intent = this.getIntent();
         //取得傳遞過來的資料
         date = intent.getStringExtra("date");

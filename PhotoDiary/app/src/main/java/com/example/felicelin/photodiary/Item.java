@@ -32,6 +32,15 @@ public class Item implements Serializable {    //介面為物件序列化,可將
         this.place=place;
         this.layout=layout;
     }
+    public Item(int id, String date, String content_1, String photo_1, String photo_2, String place, int layout){
+        this.id=id;
+        this.date=date;
+        this.content_1=content_1;
+        this.photo_1=photo_1;
+        this.photo_2=photo_2;
+        this.place=place;
+        this.layout=layout;
+    }
     public Item(int id, String date, String content_1, String photo_1, String content_2, String photo_2, String place, int layout){
         this.id=id;
         this.date=date;
